@@ -88,7 +88,7 @@ function addToMyCart() {
     let cartItems = JSON.parse(localStorage.getItem('myCart')) || [];
     cartItems.push({
         name: document.getElementById('productTitle')?.innerText || "Black Crochet Sweater",
-        price: "700 EGP",
+        price: "1300 EGP",
         size: selectedSize,
         color: selectedColor,
         image: imgElement.src
@@ -119,3 +119,4 @@ function toggleCartDisplay() {
 
 // تشغيل التحديث عند تحميل الصفحة لأول مرة
 document.addEventListener('DOMContentLoaded', updateCartUI);
+
