@@ -43,7 +43,7 @@ function updateCartUI() {
 function addToMyCart() {
     // جلب الاختيارات
     const selectedSize = document.querySelector('input[name="size"]:checked')?.value;
-    const selectedColor = document.querySelector('input[name="color"]:checked')?.value;
+    // const selectedColor = document.querySelector('input[name="color"]:checked')?.value;
 
     if (!selectedSize) {
         alert("Please, Choose The Size First");
@@ -119,5 +119,6 @@ function toggleCartDisplay() {
 
 // تشغيل التحديث عند تحميل الصفحة لأول مرة
 document.addEventListener('DOMContentLoaded', updateCartUI);
+
 
 
