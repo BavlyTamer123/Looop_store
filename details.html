@@ -305,8 +305,8 @@
             const selectedSize = document.querySelector('input[name="size"]:checked')?.value;
             const selectedColor = document.querySelector('input[name="color"]:checked')?.value;
 
-            if (!selectedSize || !selectedColor) {
-                alert("اختار المقاس واللون الأول! 😉");
+            if (!selectedSize) {
+                alert("Please, Choose The Size First");
                 return;
             }
 
@@ -360,5 +360,6 @@
 </body>
 
 </html>
+
 
 
