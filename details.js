@@ -45,8 +45,8 @@ function addToMyCart() {
     const selectedSize = document.querySelector('input[name="size"]:checked')?.value;
     const selectedColor = document.querySelector('input[name="color"]:checked')?.value;
 
-    if (!selectedSize || !selectedColor) {
-        alert("من فضلك اختر المق IS والمقاس واللون أولاً! 😉");
+    if (!selectedSize) {
+        alert("Please, Choose The Size First");
         return;
     }
 
@@ -119,4 +119,5 @@ function toggleCartDisplay() {
 
 // تشغيل التحديث عند تحميل الصفحة لأول مرة
 document.addEventListener('DOMContentLoaded', updateCartUI);
+
 
