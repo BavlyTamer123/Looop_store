@@ -26,7 +26,6 @@
             overflow-x: hidden;
         }
 
-        /* --- رجعت الـ Nav Bar زي ما كان في كودك --- */
         .brand-header {
             background-color: rgba(0, 0, 0, 0.9);
             padding: 15px 5%;
@@ -68,52 +67,52 @@
             font-weight: bold;
         }
 
-        /* --- حل مشكلة الصور مع الحفاظ على الأبعاد --- */
         .product-page {
             display: flex;
-            height: calc(100vh - 70px);
+            height: calc(100vh - 71px); /* طرح ارتفاع الهيدر */
             flex-wrap: wrap;
         }
 
         .product-gallery {
             flex: 1.2;
             min-width: 50%;
-            background-color: #48B0AD; /* لون الخلفية الأصلي */
+            background-color: #48B0AD;
             position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 100%; /* ثبات الارتفاع في الكمبيوتر */
             overflow: hidden;
         }
 
         #mainImage {
             max-width: 90%;
-            max-height: 90%;
-            object-fit: contain; /* عشان الصورة تظهر كاملة بدون قص */
+            max-height: 85%; /* ترك مساحة بسيطة للتنفس */
+            object-fit: contain;
             border-radius: 10px;
             border: 1px solid var(--accent-brown);
             transition: opacity 0.3s ease;
         }
 
         .arrow {
-            background: rgba(0, 0, 0, 0.6);
-            color: var(--accent-teal);
-            border: 1px solid var(--accent-brown);
-            width: 50px;
-            height: 50px;
+            background: rgba(0, 0, 0, 0.4);
+            color: white;
+            border: none;
+            width: 45px;
+            height: 45px;
             border-radius: 50%;
             cursor: pointer;
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
             z-index: 10;
-            font-size: 20px;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-        .next { left: 20px; }
-        .prev { right: 20px; }
+        .next { left: 15px; }
+        .prev { right: 15px; }
 
-        /* --- تفاصيل المنتج مع الـ Background Image الأصلية --- */
         .product-details {
             flex: 0.8;
             min-width: 40%;
@@ -125,28 +124,25 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            /* تأثير الظل اللي كان في كودك */
-            text-shadow: 0 0 15px rgba(255, 255, 255, 0.8), 0 0 5px rgba(255, 255, 255, 0.5);
-            color: var(--logo-brown);
-            font-weight: bold;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
         }
 
-        h2.productTitle { font-size: 35px; margin-bottom: 15px; color: #7D4427; }
-        .price-tag { font-size: 26px; color: #7D4427; margin-bottom: 30px; font-weight: bold; }
+        .brand-name { color: #7D4427; font-weight: bold; display: block; margin-bottom: 5px; }
+        h2.productTitle { font-size: 32px; margin-bottom: 10px; color: #7D4427; line-height: 1.2; }
+        .price-tag { font-size: 24px; color: #7D4427; margin-bottom: 25px; font-weight: 700; }
 
-        /* --- رجعت الـ Bottoms (الأزرار) بتصميمك الأصلي --- */
-        .radio-buttons { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 10px; margin-bottom: 20px; }
+        .radio-buttons { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px; margin-bottom: 20px; }
         .radio-buttons input { display: none; }
         .radio-buttons label {
             background-color: var(--accent-teal);
             color: var(--bg-dark-brown);
             border: 2px solid var(--accent-teal);
-            padding: 10px 25px;
+            padding: 12px 20px;
             cursor: pointer;
             border-radius: 8px;
             transition: 0.3s;
             font-weight: bold;
-            min-width: 60px;
+            min-width: 55px;
             text-align: center;
         }
 
@@ -154,8 +150,7 @@
             background-color: var(--accent-brown);
             border-color: var(--accent-brown);
             color: var(--text-cream);
-            transform: scale(1.1);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            transform: scale(1.05);
         }
 
         .add-btn {
@@ -163,25 +158,14 @@
             color: var(--bg-dark-brown);
             border: none;
             padding: 18px;
-            font-size: 20px;
+            font-size: 18px;
             font-weight: 700;
             cursor: pointer;
             width: 100%;
-            margin-top: 20px;
             border-radius: 12px;
             transition: 0.3s;
         }
 
-        .add-btn:hover {
-            background-color: var(--accent-brown);
-            color: white;
-            transform: translateY(-3px);
-        }
-
-        /* الألوان للنصوص */
-        .brand-name, .productTitle, .price-tag, span { color: #7D4427; }
-
-        /* انيميشن السلة */
         @keyframes shake {
             0% { transform: scale(1); }
             25% { transform: scale(1.2) rotate(10deg); }
@@ -189,11 +173,25 @@
             100% { transform: scale(1); }
         }
 
-        /* استجابة الموبايل مع تثبيت الصور */
+        /* التعديلات الجوهرية للموبايل */
         @media (max-width: 768px) {
-            .product-page { flex-direction: column; height: auto; }
-            .product-gallery { height: 50vh; min-width: 100%; }
-            .product-details { min-width: 100%; padding: 30px 20px; }
+            .product-page { 
+                flex-direction: column; 
+                height: auto; /* السماح للصفحة بالتمدد طولياً */
+            }
+            .product-gallery { 
+                height: 60vh; /* تحديد ارتفاع ثابت لمنطقة الصور في الموبايل */
+                min-width: 100%; 
+            }
+            #mainImage {
+                max-width: 85%;
+                max-height: 90%;
+            }
+            .product-details { 
+                min-width: 100%; 
+                padding: 30px 20px;
+                background-attachment: scroll; /* لضمان استقرار الخلفية */
+            }
         }
     </style>
 </head>
@@ -224,7 +222,7 @@
             <p class="price-tag">1300.00 EGP</p>
 
             <div class="options-group">
-                <span> SIZE</span>
+                <span style="color:#7D4427"> SIZE</span>
                 <div class="radio-buttons">
                     <input type="radio" name="size" id="s" value="S"> <label for="s">S</label>
                     <input type="radio" name="size" id="m" value="M"> <label for="m">M</label>
@@ -263,7 +261,6 @@
             const selectedSize = document.querySelector('input[name="size"]:checked')?.value;
             if (!selectedSize) { alert("Please, Choose The Size First"); return; }
 
-            // كود الأنيميشن الخاص بك
             const imgElement = document.getElementById('mainImage');
             const cartIcon = document.getElementById('cartWrapper');
             const flyingImg = imgElement.cloneNode();
@@ -273,7 +270,8 @@
             Object.assign(flyingImg.style, {
                 position: 'fixed', top: rect.top + 'px', left: rect.left + 'px',
                 width: rect.width + 'px', height: rect.height + 'px', zIndex: '5000',
-                transition: 'all 0.8s ease-in-out', borderRadius: '10px', pointerEvents: 'none'
+                transition: 'all 0.8s ease-in-out', borderRadius: '10px', pointerEvents: 'none',
+                objectFit: 'contain'
             });
 
             document.body.appendChild(flyingImg);
@@ -300,5 +298,4 @@
         }
     </script>
 </body>
-
 </html>
