@@ -135,7 +135,15 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-        }
+            /* ظل أبيض ناعم جداً ومنتشر (Blur) بدل الخط الحاد */
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.8),
+                0 0 5px rgba(255, 255, 255, 0.5);
+
+            /* التأكد من أن اللون الأصلي (البني) واضح */
+            color: var(--logo-brown);
+            font-weight: bold;
+
+        }}
 
         h2 {
             font-size: 35px;
@@ -360,6 +368,7 @@
 </body>
 
 </html>
+
 
 
 
