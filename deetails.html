@@ -6,7 +6,8 @@
     <title>Urban crochet sweater Details - LOOP STORE</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Tajawal:wght@400;700&display=swap"
+        rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         :root {
@@ -14,6 +15,7 @@
             --accent-teal: #48B0AD;
             --accent-brown: #7D4427;
             --text-cream: #f4f1e8;
+            --logo-brown: #7D4427;
         }
 
         * {
@@ -27,10 +29,9 @@
             background-color: var(--bg-dark-brown);
             color: var(--text-cream);
             overflow-x: hidden;
-            direction: rtl;
         }
 
-        /* --- الهيدر الأصلي --- */
+        /* --- الهيدر الموحد --- */
         .brand-header {
             background-color: rgba(0, 0, 0, 0.9);
             padding: 15px 5%;
@@ -58,8 +59,16 @@
             font-weight: bold;
         }
 
-        .cart-wrapper { position: relative; }
-        .cart-icon { text-decoration: none; color: var(--text-cream); font-size: 24px; }
+        .cart-wrapper {
+            position: relative;
+        }
+
+        .cart-icon {
+            text-decoration: none;
+            color: var(--text-cream);
+            font-size: 24px;
+        }
+
         #cart-count {
             background: var(--accent-teal);
             color: var(--bg-dark-brown);
@@ -72,14 +81,13 @@
             font-weight: bold;
         }
 
-        /* --- تقسيم الصفحة مع ثبات الأبعاد --- */
+        /* --- تقسيم الصفحة --- */
         .product-page {
             display: flex;
             height: calc(100vh - 70px);
             flex-wrap: wrap;
         }
 
-        /* حاوية الصور الثابتة */
         .product-gallery {
             flex: 1.2;
             min-width: 50%;
@@ -88,14 +96,13 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 100%;
             overflow: hidden;
         }
 
         #mainImage {
             max-width: 90%;
             max-height: 90%;
-            object-fit: contain; /* لضمان ظهور الصورة كاملة */
+            object-fit: contain;
             border-radius: 10px;
             border: 1px solid var(--accent-brown);
             transition: opacity 0.3s ease-in-out;
@@ -116,10 +123,15 @@
             font-size: 20px;
         }
 
-        .next { left: 20px; }
-        .prev { right: 20px; }
+        .next {
+            left: 20px;
+        }
 
-        /* --- تفاصيل المنتج --- */
+        .prev {
+            right: 20px;
+        }
+
+        /* --- تفاصيل المنتج بخلفية الصورة الموحدة --- */
         .product-details {
             flex: 0.8;
             min-width: 40%;
@@ -131,17 +143,42 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            /* تأثير التوهج للنصوص البنية */
             text-shadow: 0 0 15px rgba(255, 255, 255, 0.8), 0 0 5px rgba(255, 255, 255, 0.5);
         }
 
-        h2.productTitle { font-size: 35px; margin-bottom: 15px; color: #7D4427; }
-        .price-tag { font-size: 26px; color: #7D4427; margin-bottom: 30px; font-weight: bold; }
-        .brand-name, .color-title, .options-group span { color: #7D4427; font-weight: bold; }
+        /* توحيد ألوان النصوص */
+        .brand-name,
+        .productTitle,
+        .price-tag,
+        .options-group span,
+        .color-title {
+            color: #7D4427;
+            font-weight: bold;
+        }
 
-        /* --- تنسيق الأزرار (Buttons) كما تحب --- */
-        .radio-buttons { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 10px; }
-        .radio-buttons input { display: none; }
+        h2.productTitle {
+            font-size: 35px;
+            margin-bottom: 10px;
+        }
+
+        .price-tag {
+            font-size: 26px;
+            margin-bottom: 25px;
+        }
+
+        /* --- تنسيق أزرار المقاسات --- */
+        .radio-buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+
+        .radio-buttons input {
+            display: none;
+        }
+
         .radio-buttons label {
             background-color: var(--accent-teal);
             color: var(--bg-dark-brown);
@@ -150,7 +187,6 @@
             cursor: pointer;
             border-radius: 8px;
             transition: 0.3s;
-            font-weight: bold;
             min-width: 60px;
             text-align: center;
         }
@@ -163,20 +199,40 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
         }
 
-        /* مربعات الألوان */
-        .color-box { margin: 20px 0; }
-        .colors { display: flex; gap: 15px; margin-top: 10px; }
-        .color {
-            width: 45px; height: 45px; border-radius: 50%;
-            cursor: pointer; border: 3px solid transparent; transition: 0.3s;
-        }
-        .color.active { border-color: #fff; box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); }
-        .mood {
-            margin-top: 15px; font-size: 16px; color: #fff;
-            background: rgba(125, 68, 39, 0.8); /* لون بني شفاف ليتماشى مع الثيم */
-            padding: 5px 15px; border-radius: 5px; display: inline-block;
+        /* --- تنسيق دوائر الألوان --- */
+        .colors {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
         }
 
+        .color {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 3px solid transparent;
+            transition: 0.3s;
+        }
+
+        .color.active {
+            border-color: var(--accent-brown);
+            transform: scale(1.1);
+        }
+
+        .mood {
+            margin-top: 10px;
+            font-size: 14px;
+            color: var(--text-cream);
+            background: rgba(125, 68, 39, 0.9);
+            padding: 4px 12px;
+            border-radius: 5px;
+            display: inline-block;
+            text-shadow: none;
+            font-weight: normal;
+        }
+
+        /* --- زر الإضافة للسلة --- */
         .add-btn {
             background-color: var(--accent-teal);
             color: var(--bg-dark-brown);
@@ -186,7 +242,7 @@
             font-weight: 700;
             cursor: pointer;
             width: 100%;
-            margin-top: 20px;
+            margin-top: 25px;
             border-radius: 12px;
             transition: 0.3s;
         }
@@ -198,15 +254,38 @@
         }
 
         @keyframes shake {
-            0% { transform: scale(1); }
-            25% { transform: scale(1.2) rotate(10deg); }
-            50% { transform: scale(1.2) rotate(-10deg); }
-            100% { transform: scale(1); }
+            0% {
+                transform: scale(1);
+            }
+
+            25% {
+                transform: scale(1.2) rotate(10deg);
+            }
+
+            50% {
+                transform: scale(1.2) rotate(-10deg);
+            }
+
+            100% {
+                transform: scale(1);
+            }
         }
 
         @media (max-width: 768px) {
-            .product-page { flex-direction: column; height: auto; }
-            .product-gallery { height: 50vh; min-width: 100%; }
+            .product-page {
+                flex-direction: column;
+                height: auto;
+            }
+
+            .product-gallery {
+                height: 50vh;
+                min-width: 100%;
+            }
+
+            .product-details {
+                min-width: 100%;
+                padding: 30px 20px;
+            }
         }
     </style>
 </head>
@@ -247,10 +326,12 @@
             </div>
 
             <div class="color-box">
-                <div class="color-title"> Color</div>
+                <div class="color-title"> COLOR</div>
                 <div class="colors">
-                    <div class="color active" style="background:#2f2f2f" data-mood="Classic Mood" data-image="11baf817f420e7749714c6d56e9c8b37.jpg"></div>
-                    <div class="color" style="background:#7a6a5f" data-mood="Warm Mood" data-image="64fcff1d-dc60-49bc-aac0-536597c0868e.jpg"></div>
+                    <div class="color active" style="background:#2f2f2f" data-mood="Classic Mood"
+                        data-image="11baf817f420e7749714c6d56e9c8b37.jpg"></div>
+                    <div class="color" style="background:#7a6a5f" data-mood="Warm Mood"
+                        data-image="64fcff1d-dc60-49bc-aac0-536597c0868e.jpg"></div>
                 </div>
                 <p id="moodText" class="mood">Classic Mood</p>
             </div>
@@ -260,7 +341,7 @@
     </main>
 
     <script>
-        let images = ["11baf817f420e7749714c6d56e9c8b37.jpg", "Gemini_Generated_Image_s7l6i5s7l6i5s7l6~3.png"];
+        let images = ["11baf817f420e7749714c6d56e9c8b37.jpg", "64fcff1d-dc60-49bc-aac0-536597c0868e.jpg"];
         let currentIndex = 0;
 
         function changeImage(direction) {
@@ -275,21 +356,21 @@
             }, 150);
         }
 
-        // منطق اختيار الألوان وتغيير الصور
+        // تحسين اختيار الألوان
         const colorElements = document.querySelectorAll('.color');
         const moodText = document.getElementById('moodText');
-        const mainImage = document.getElementById('mainImage');
+        const mainImg = document.getElementById('mainImage');
 
         colorElements.forEach(color => {
             color.addEventListener('click', () => {
                 colorElements.forEach(c => c.classList.remove('active'));
                 color.classList.add('active');
                 moodText.textContent = color.dataset.mood;
-                
-                mainImage.style.opacity = '0.5';
+
+                mainImg.style.opacity = '0.5';
                 setTimeout(() => {
-                    mainImage.src = color.dataset.image;
-                    mainImage.style.opacity = '1';
+                    mainImg.src = color.dataset.image;
+                    mainImg.style.opacity = '1';
                 }, 150);
             });
         });
@@ -299,7 +380,6 @@
             document.getElementById('cart-count').innerText = cartItems.length;
         }
         updateCartNumber();
-
         function addToMyCart() {
             const selectedSize = document.querySelector('input[name="size"]:checked')?.value;
             const activeColor = document.querySelector('.color.active');
@@ -316,30 +396,44 @@
             const rect = imgElement.getBoundingClientRect();
             const cartRect = cartIcon.getBoundingClientRect();
 
+            // تطبيق نفس ستايل الكود الأول بالظبط
             Object.assign(flyingImg.style, {
-                position: 'fixed', top: rect.top + 'px', left: rect.left + 'px',
-                width: rect.width + 'px', height: rect.height + 'px', zIndex: '5000',
-                transition: 'all 0.8s ease-in-out', borderRadius: '10px', pointerEvents: 'none'
+                position: 'fixed',
+                top: rect.top + 'px',
+                left: rect.left + 'px',
+                width: rect.width + 'px',
+                height: rect.height + 'px',
+                zIndex: '5000',
+                transition: 'all 0.8s cubic-bezier(0.45, 0.05, 0.55, 0.95)', // الحركة الانسيابية
+                borderRadius: '10px',
+                pointerEvents: 'none'
             });
 
             document.body.appendChild(flyingImg);
+
             requestAnimationFrame(() => {
                 flyingImg.style.top = cartRect.top + 'px';
                 flyingImg.style.left = cartRect.left + 'px';
-                flyingImg.style.width = '20px'; flyingImg.style.height = '20px';
+                flyingImg.style.width = '20px';
+                flyingImg.style.height = '20px';
+                flyingImg.style.transform = 'rotate(720deg)'; // إضافة الدوران
                 flyingImg.style.opacity = '0.3';
             });
 
+            // حفظ البيانات
             let cartItems = JSON.parse(localStorage.getItem('myCart')) || [];
             cartItems.push({
                 name: document.getElementById('productTitle').innerText,
-                price: "1400 EGP", size: selectedSize, color: colorMood, image: imgElement.src
+                price: "1400 EGP",
+                size: selectedSize,
+                color: colorMood,
+                image: imgElement.src
             });
             localStorage.setItem('myCart', JSON.stringify(cartItems));
 
             setTimeout(() => {
                 flyingImg.remove();
-                cartIcon.style.animation = "shake 0.5s ease";
+                cartIcon.style.animation = "shake 0.5s ease"; // هزة السلة
                 updateCartNumber();
                 setTimeout(() => cartIcon.style.animation = "", 500);
             }, 800);
