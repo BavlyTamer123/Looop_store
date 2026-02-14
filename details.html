@@ -6,15 +6,15 @@
     <title>Midnight black crochet sweater Details - LOOP STORE</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Tajawal:wght@400;700&display=swap"
-        rel="stylesheet">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         :root {
             --bg-dark-brown: #1a0f0a;
             --accent-teal: #48B0AD;
             --accent-brown: #7D4427;
             --text-cream: #f4f1e8;
+            --logo-brown: #7D4427;
         }
 
         * {
@@ -30,6 +30,7 @@
             overflow-x: hidden;
         }
 
+        /* الهيدر */
         .brand-header {
             background-color: rgba(0, 0, 0, 0.9);
             padding: 15px 5%;
@@ -47,12 +48,13 @@
             font-size: 35px;
             color: var(--accent-teal);
             letter-spacing: 2px;
+            text-decoration: none;
         }
 
         .brand-nav a {
             text-decoration: none;
             color: var(--text-cream);
-            margin-left: 20px;
+            margin-right: 20px;
             font-weight: bold;
         }
 
@@ -78,101 +80,108 @@
             font-weight: bold;
         }
 
+        /* تقسيم الصفحة */
         .product-page {
             display: flex;
-            height: calc(100vh - 70px);
+            min-height: calc(100vh - 70px);
             flex-wrap: wrap;
         }
 
+        /* معرض الصور - التعديل الأساسي هنا */
         .product-gallery {
             flex: 1.2;
             min-width: 50%;
+            height: calc(100vh - 70px); /* تثبيت الطول */
             background-color: #48B0AD;
             position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
+            overflow: hidden;
         }
 
         #mainImage {
-            max-width: 90%;
-            max-height: 90%;
-            object-fit: contain;
-            border-radius: 10px;
-            border: 1px solid var(--accent-brown);
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* لضمان عدم تغير الأبعاد عند تبديل الصور */
+            transition: opacity 0.3s ease-in-out;
         }
 
         .arrow {
-            background: rgba(0, 0, 0, 0.6);
-            color: var(--accent-teal);
-            border: 1px solid var(--accent-brown);
-            width: 50px;
-            height: 50px;
+            background: rgba(0, 0, 0, 0.4);
+            color: white;
+            border: none;
+            width: 45px;
+            height: 45px;
             border-radius: 50%;
             cursor: pointer;
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
             z-index: 10;
-            font-size: 20px;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s;
         }
 
-        .next {
-            left: 20px;
-        }
+        .arrow:hover { background: var(--accent-brown); }
+        .next { left: 20px; }
+        .prev { right: 20px; }
 
-        .prev {
-            right: 20px;
-        }
-
+        /* تفاصيل المنتج */
         .product-details {
             flex: 0.8;
             min-width: 40%;
             padding: 40px 5%;
             background-image: url('fe97df0b-f081-4a4c-a264-b45532ffea62.jpg');
             background-size: cover;
+            background-position: center;
             text-align: right;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            /* ظل أبيض ناعم جداً ومنتشر (Blur) بدل الخط الحاد */
-            text-shadow: 0 0 15px rgba(255, 255, 255, 0.8),
-                0 0 5px rgba(255, 255, 255, 0.5);
+            /* توهج للنص لزيادة الوضوح */
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+        }
 
-            /* التأكد من أن اللون الأصلي (البني) واضح */
-            color: var(--logo-brown);
-            font-weight: bold;
-
-        }}
-
-        h2 {
-            font-size: 35px;
+        .brand-name { color: var(--logo-brown); font-weight: bold; display: block; margin-bottom: 5px; }
+        
+        h2.productTitle {
+            font-size: 32px;
             margin-bottom: 15px;
-            color: white;
+            color: var(--logo-brown);
+            font-weight: 700;
         }
 
         .price-tag {
             font-size: 26px;
-            color: var(--accent-teal);
+            color: var(--logo-brown);
             margin-bottom: 30px;
             font-weight: bold;
         }
 
+        .options-group span {
+            color: var(--logo-brown);
+            font-weight: bold;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        /* الأزرار */
         .radio-buttons {
             display: flex;
             gap: 12px;
             flex-wrap: wrap;
-            margin-top: 10px;
+            margin-bottom: 30px;
         }
 
-        .radio-buttons input {
-            display: none;
-        }
+        .radio-buttons input { display: none; }
 
         .radio-buttons label {
             background-color: var(--accent-teal);
-            color: var(--bg-dark-brown);
-            border: 2px solid var(--accent-teal);
+            color: white;
             padding: 10px 25px;
             cursor: pointer;
             border-radius: 8px;
@@ -182,80 +191,54 @@
             text-align: center;
         }
 
-        .radio-buttons input:checked+label {
+        .radio-buttons input:checked + label {
             background-color: var(--accent-brown);
-            border-color: var(--accent-brown);
-            color: var(--text-cream);
             transform: scale(1.1);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
         }
 
         .add-btn {
             background-color: var(--accent-teal);
-            color: var(--bg-dark-brown);
+            color: white;
             border: none;
             padding: 18px;
             font-size: 20px;
             font-weight: 700;
             cursor: pointer;
             width: 100%;
-            margin-top: 20px;
             border-radius: 12px;
             transition: 0.3s;
         }
 
         .add-btn:hover {
             background-color: var(--accent-brown);
-            color: white;
             transform: translateY(-3px);
         }
 
-        .brand-name,
-        .productTitle,
-        .price-tag,
-        .ColorColor,
-        span {
-            color: #7D4427;
-        }
-
+        /* انيميشن الهز */
         @keyframes shake {
-            0% {
-                transform: scale(1);
-            }
-
-            25% {
-                transform: scale(1.2) rotate(10deg);
-            }
-
-            50% {
-                transform: scale(1.2) rotate(-10deg);
-            }
-
-            100% {
-                transform: scale(1);
-            }
+            0% { transform: scale(1); }
+            25% { transform: scale(1.2) rotate(10deg); }
+            50% { transform: scale(1.2) rotate(-10deg); }
+            100% { transform: scale(1); }
         }
 
+        /* الموبايل */
         @media (max-width: 768px) {
-            .product-page {
-                flex-direction: column;
-                height: auto;
-            }
-
-            .product-gallery {
-                height: 50vh;
-            }
+            .product-page { flex-direction: column; }
+            .product-gallery { height: 50vh; min-width: 100%; }
+            .product-details { min-width: 100%; padding: 30px 20px; }
         }
     </style>
 </head>
 
 <body>
     <header class="brand-header">
-        <h1 class="logo">LOOP</h1>
+        <a href="index.html" class="logo">LOOP</a>
         <nav class="brand-nav">
-            <a href="index.html">Home</a>
-            <a href="#">Women</a>
-            <a href="#">Men</a>
+            <a href="index.html">الرئيسية</a>
+            <a href="#">نسائي</a>
+            <a href="#">رجالي</a>
         </nav>
         <div class="cart-wrapper" id="cartWrapper">
             <a href="cart.html" class="cart-icon">
@@ -277,7 +260,7 @@
             <p class="price-tag">1300.00 EGP</p>
 
             <div class="options-group">
-                <span> SIZE</span>
+                <span>SIZE / المقاس</span>
                 <div class="radio-buttons">
                     <input type="radio" name="size" id="s" value="S"> <label for="s">S</label>
                     <input type="radio" name="size" id="m" value="M"> <label for="m">M</label>
@@ -286,21 +269,25 @@
                 </div>
             </div>
 
-
-
-            <button class="add-btn" onclick="addToMyCart()">Add to cart</button>
+            <button class="add-btn" onclick="addToMyCart()">إضافة إلى العربة</button>
         </section>
     </main>
 
     <script>
-        const images = ["IMG-20260208-WA0000.jpg", "0000.jpg", "7777.jpg"];
+        const images = ["IMG-20260208-WA0002.jpg", "IMG-20260208-WA0000.jpg", "0000.jpg", "7777.jpg"];
         let currentIndex = 0;
 
         function changeImage(direction) {
-            currentIndex += direction;
-            if (currentIndex >= images.length) currentIndex = 0;
-            if (currentIndex < 0) currentIndex = images.length - 1;
-            document.getElementById('mainImage').src = images[currentIndex];
+            const imgElement = document.getElementById('mainImage');
+            imgElement.style.opacity = 0; // تأثير تلاشي بسيط
+            
+            setTimeout(() => {
+                currentIndex += direction;
+                if (currentIndex >= images.length) currentIndex = 0;
+                if (currentIndex < 0) currentIndex = images.length - 1;
+                imgElement.src = images[currentIndex];
+                imgElement.style.opacity = 1;
+            }, 200);
         }
 
         function updateCartNumber() {
@@ -311,10 +298,9 @@
 
         function addToMyCart() {
             const selectedSize = document.querySelector('input[name="size"]:checked')?.value;
-            const selectedColor = document.querySelector('input[name="color"]:checked')?.value;
 
             if (!selectedSize) {
-                alert("Please, Choose The Size First");
+                alert("برجاء اختيار المقاس أولاً");
                 return;
             }
 
@@ -333,7 +319,8 @@
                 zIndex: '5000',
                 transition: 'all 0.8s cubic-bezier(0.45, 0.05, 0.55, 0.95)',
                 borderRadius: '10px',
-                pointerEvents: 'none'
+                pointerEvents: 'none',
+                objectFit: 'cover'
             });
 
             document.body.appendChild(flyingImg);
@@ -343,7 +330,6 @@
                 flyingImg.style.left = cartRect.left + 'px';
                 flyingImg.style.width = '20px';
                 flyingImg.style.height = '20px';
-                flyingImg.style.transform = 'rotate(720deg)';
                 flyingImg.style.opacity = '0.3';
             });
 
@@ -352,7 +338,6 @@
                 name: document.getElementById('productTitle').innerText,
                 price: "1300.00 EGP",
                 size: selectedSize,
-                color: selectedColor,
                 image: imgElement.src
             });
             localStorage.setItem('myCart', JSON.stringify(cartItems));
@@ -366,16 +351,4 @@
         }
     </script>
 </body>
-
 </html>
-
-
-
-
-
-
-
-
-
-
-
