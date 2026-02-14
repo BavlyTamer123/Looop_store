@@ -212,4 +212,33 @@ nav ul li a:hover {
 body {
     background-image: url(f05fd9a3-b823-465f-b6a6-37342a58e213.jpg);
     background-size: cover;
+
+}
+/* تنسيق الموبايل (للشاشات الأصغر من 768 بكسل) */
+@media (max-width: 768px) {
+    .products-wrapper {
+        display: grid; /* تحويله من Flex إلى Grid */
+        grid-template-columns: repeat(2, 1fr); /* عرض عنصرين في الصف الواحد */
+        gap: 10px; /* تقليل المسافة بين العناصر لتناسب الشاشة */
+        overflow-x: visible; /* إلغاء التمرير الأفقي */
+        padding: 10px;
+    }
+
+    .product-item {
+        min-width: unset; /* إلغاء الحد الأدنى للعرض ليتناسب مع الشبكة */
+        padding: 10px;
+    }
+
+    .img-box {
+        height: 200px; /* تقليل ارتفاع الصورة ليناسب عرض الموبايل */
+    }
+
+    .product-details h3 {
+        font-size: 0.9rem; /* تصغير الخط قليلاً ليناسب المساحة */
+    }
+
+    /* إخفاء نقط التمرير الخاصة بالمنتجات في الموبايل لأننا لم نعد نستخدم السلايدر */
+    .product-dots {
+        display: none;
+    }
 }
