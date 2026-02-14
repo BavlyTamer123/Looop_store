@@ -3,11 +3,10 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Midnight black crochet sweater Details - LOOP STORE</title>
+    <title>Urban crochet sweater Details - LOOP STORE</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Tajawal:wght@400;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         :root {
@@ -31,6 +30,7 @@
             direction: rtl;
         }
 
+        /* --- الهيدر الأصلي --- */
         .brand-header {
             background-color: rgba(0, 0, 0, 0.9);
             padding: 15px 5%;
@@ -48,6 +48,7 @@
             font-size: 35px;
             color: var(--accent-teal);
             letter-spacing: 2px;
+            text-decoration: none;
         }
 
         .brand-nav a {
@@ -57,16 +58,8 @@
             font-weight: bold;
         }
 
-        .cart-wrapper {
-            position: relative;
-        }
-
-        .cart-icon {
-            text-decoration: none;
-            color: var(--text-cream);
-            font-size: 24px;
-        }
-
+        .cart-wrapper { position: relative; }
+        .cart-icon { text-decoration: none; color: var(--text-cream); font-size: 24px; }
         #cart-count {
             background: var(--accent-teal);
             color: var(--bg-dark-brown);
@@ -79,12 +72,14 @@
             font-weight: bold;
         }
 
+        /* --- تقسيم الصفحة مع ثبات الأبعاد --- */
         .product-page {
             display: flex;
             height: calc(100vh - 70px);
             flex-wrap: wrap;
         }
 
+        /* حاوية الصور الثابتة */
         .product-gallery {
             flex: 1.2;
             min-width: 50%;
@@ -93,12 +88,14 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            height: 100%;
+            overflow: hidden;
         }
 
         #mainImage {
             max-width: 90%;
             max-height: 90%;
-            object-fit: contain;
+            object-fit: contain; /* لضمان ظهور الصورة كاملة */
             border-radius: 10px;
             border: 1px solid var(--accent-brown);
             transition: opacity 0.3s ease-in-out;
@@ -119,50 +116,32 @@
             font-size: 20px;
         }
 
-        .next {
-            left: 20px;
-        }
+        .next { left: 20px; }
+        .prev { right: 20px; }
 
-        .prev {
-            right: 20px;
-        }
-
+        /* --- تفاصيل المنتج --- */
         .product-details {
             flex: 0.8;
             min-width: 40%;
             padding: 40px 5%;
             background-image: url('fe97df0b-f081-4a4c-a264-b45532ffea62.jpg');
             background-size: cover;
+            background-position: center;
             text-align: right;
             display: flex;
             flex-direction: column;
             justify-content: center;
+            /* تأثير التوهج للنصوص البنية */
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.8), 0 0 5px rgba(255, 255, 255, 0.5);
         }
 
-        h2 {
-            font-size: 35px;
-            margin-bottom: 15px;
-            color: white;
-        }
+        h2.productTitle { font-size: 35px; margin-bottom: 15px; color: #7D4427; }
+        .price-tag { font-size: 26px; color: #7D4427; margin-bottom: 30px; font-weight: bold; }
+        .brand-name, .color-title, .options-group span { color: #7D4427; font-weight: bold; }
 
-        .price-tag {
-            font-size: 26px;
-            color: var(--accent-teal);
-            margin-bottom: 30px;
-            font-weight: bold;
-        }
-
-        .radio-buttons {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-            margin-top: 10px;
-        }
-
-        .radio-buttons input {
-            display: none;
-        }
-
+        /* --- تنسيق الأزرار (Buttons) كما تحب --- */
+        .radio-buttons { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 10px; }
+        .radio-buttons input { display: none; }
         .radio-buttons label {
             background-color: var(--accent-teal);
             color: var(--bg-dark-brown);
@@ -182,6 +161,20 @@
             color: var(--text-cream);
             transform: scale(1.1);
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        /* مربعات الألوان */
+        .color-box { margin: 20px 0; }
+        .colors { display: flex; gap: 15px; margin-top: 10px; }
+        .color {
+            width: 45px; height: 45px; border-radius: 50%;
+            cursor: pointer; border: 3px solid transparent; transition: 0.3s;
+        }
+        .color.active { border-color: #fff; box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); }
+        .mood {
+            margin-top: 15px; font-size: 16px; color: #fff;
+            background: rgba(125, 68, 39, 0.8); /* لون بني شفاف ليتماشى مع الثيم */
+            padding: 5px 15px; border-radius: 5px; display: inline-block;
         }
 
         .add-btn {
@@ -204,80 +197,16 @@
             transform: translateY(-3px);
         }
 
-        .brand-name,
-        .productTitle,
-        .price-tag,
-        .color-title,
-        .options-group span {
-            color: #7D4427;
-            font-weight: bold;
-        }
-
-        .color-box {
-            margin: 20px 0;
-        }
-
-        .colors {
-            display: flex;
-            gap: 15px;
-            margin-top: 10px;
-        }
-
-        .color {
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            cursor: pointer;
-            border: 3px solid transparent;
-            transition: 0.3s;
-        }
-
-        .color:hover {
-            transform: scale(1.1);
-        }
-
-        .color.active {
-            border-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-        }
-
-        .mood {
-            margin-top: 15px;
-            font-size: 16px;
-            color: #fff;
-            background: rgba(0, 0, 0, 0.3);
-            padding: 5px 10px;
-            border-radius: 5px;
-            display: inline-block;
-        }
-
         @keyframes shake {
-            0% {
-                transform: scale(1);
-            }
-
-            25% {
-                transform: scale(1.2) rotate(10deg);
-            }
-
-            50% {
-                transform: scale(1.2) rotate(-10deg);
-            }
-
-            100% {
-                transform: scale(1);
-            }
+            0% { transform: scale(1); }
+            25% { transform: scale(1.2) rotate(10deg); }
+            50% { transform: scale(1.2) rotate(-10deg); }
+            100% { transform: scale(1); }
         }
 
         @media (max-width: 768px) {
-            .product-page {
-                flex-direction: column;
-                height: auto;
-            }
-
-            .product-gallery {
-                height: 50vh;
-            }
+            .product-page { flex-direction: column; height: auto; }
+            .product-gallery { height: 50vh; min-width: 100%; }
         }
     </style>
 </head>
@@ -291,9 +220,7 @@
             <a href="#">Men</a>
         </nav>
         <div class="cart-wrapper" id="cartWrapper">
-            <a href="cart.html" class="cart-icon">
-                🛒 <span id="cart-count">0</span>
-            </a>
+            <a href="cart.html" class="cart-icon">🛒 <span id="cart-count">0</span></a>
         </div>
     </header>
 
@@ -322,13 +249,10 @@
             <div class="color-box">
                 <div class="color-title"> Color</div>
                 <div class="colors">
-                    <div class="color active" style="background:#2f2f2f" data-mood="Classic Mood "
-                        data-image="11baf817f420e7749714c6d56e9c8b37.jpg"></div>
-
-                    <div class="color" style="background:#7a6a5f" data-mood="Warm Mood "
-                        data-image="64fcff1d-dc60-49bc-aac0-536597c0868e.jpg"></div>
+                    <div class="color active" style="background:#2f2f2f" data-mood="Classic Mood" data-image="11baf817f420e7749714c6d56e9c8b37.jpg"></div>
+                    <div class="color" style="background:#7a6a5f" data-mood="Warm Mood" data-image="64fcff1d-dc60-49bc-aac0-536597c0868e.jpg"></div>
                 </div>
-                <p id="moodText" class="mood">Classic Mood </p>
+                <p id="moodText" class="mood">Classic Mood</p>
             </div>
 
             <button class="add-btn" onclick="addToMyCart()">Add to cart</button>
@@ -336,36 +260,35 @@
     </main>
 
     <script>
-        // مصفوفة الصور للتقليب اليدوي
         let images = ["11baf817f420e7749714c6d56e9c8b37.jpg", "Gemini_Generated_Image_s7l6i5s7l6i5s7l6~3.png"];
         let currentIndex = 0;
 
         function changeImage(direction) {
-            currentIndex += direction;
-            if (currentIndex >= images.length) currentIndex = 0;
-            if (currentIndex < 0) currentIndex = images.length - 1;
-            document.getElementById('mainImage').src = images[currentIndex];
+            const img = document.getElementById('mainImage');
+            img.style.opacity = '0.5';
+            setTimeout(() => {
+                currentIndex += direction;
+                if (currentIndex >= images.length) currentIndex = 0;
+                if (currentIndex < 0) currentIndex = images.length - 1;
+                img.src = images[currentIndex];
+                img.style.opacity = '1';
+            }, 150);
         }
 
-        // منطق اختيار الألوان وتغيير الصور تلقائياً
+        // منطق اختيار الألوان وتغيير الصور
         const colorElements = document.querySelectorAll('.color');
         const moodText = document.getElementById('moodText');
         const mainImage = document.getElementById('mainImage');
 
         colorElements.forEach(color => {
             color.addEventListener('click', () => {
-                // إزالة التحديد عن باقي الألوان
                 colorElements.forEach(c => c.classList.remove('active'));
                 color.classList.add('active');
-
-                // تغيير النص الوصفي
                 moodText.textContent = color.dataset.mood;
-
-                // تغيير الصورة فوراً للزبون
-                const newImg = color.dataset.image;
-                mainImage.style.opacity = '0.5'; // تأثير بصري بسيط عند التغيير
+                
+                mainImage.style.opacity = '0.5';
                 setTimeout(() => {
-                    mainImage.src = newImg;
+                    mainImage.src = color.dataset.image;
                     mainImage.style.opacity = '1';
                 }, 150);
             });
@@ -394,35 +317,23 @@
             const cartRect = cartIcon.getBoundingClientRect();
 
             Object.assign(flyingImg.style, {
-                position: 'fixed',
-                top: rect.top + 'px',
-                left: rect.left + 'px',
-                width: rect.width + 'px',
-                height: rect.height + 'px',
-                zIndex: '5000',
-                transition: 'all 0.8s cubic-bezier(0.45, 0.05, 0.55, 0.95)',
-                borderRadius: '10px',
-                pointerEvents: 'none'
+                position: 'fixed', top: rect.top + 'px', left: rect.left + 'px',
+                width: rect.width + 'px', height: rect.height + 'px', zIndex: '5000',
+                transition: 'all 0.8s ease-in-out', borderRadius: '10px', pointerEvents: 'none'
             });
 
             document.body.appendChild(flyingImg);
-
             requestAnimationFrame(() => {
                 flyingImg.style.top = cartRect.top + 'px';
                 flyingImg.style.left = cartRect.left + 'px';
-                flyingImg.style.width = '20px';
-                flyingImg.style.height = '20px';
-                flyingImg.style.transform = 'rotate(720deg)';
+                flyingImg.style.width = '20px'; flyingImg.style.height = '20px';
                 flyingImg.style.opacity = '0.3';
             });
 
             let cartItems = JSON.parse(localStorage.getItem('myCart')) || [];
             cartItems.push({
                 name: document.getElementById('productTitle').innerText,
-                price: "1400 EGP",
-                size: selectedSize,
-                color: colorMood,
-                image: imgElement.src
+                price: "1400 EGP", size: selectedSize, color: colorMood, image: imgElement.src
             });
             localStorage.setItem('myCart', JSON.stringify(cartItems));
 
@@ -435,6 +346,5 @@
         }
     </script>
 </body>
-
 
 </html>
