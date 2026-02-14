@@ -17,11 +17,7 @@
             --logo-brown: #7D4427;
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
             font-family: 'Tajawal', sans-serif;
@@ -30,7 +26,7 @@
             overflow-x: hidden;
         }
 
-        /* الهيدر */
+        /* --- رجعت الـ Nav Bar زي ما كان في كودك --- */
         .brand-header {
             background-color: rgba(0, 0, 0, 0.9);
             padding: 15px 5%;
@@ -54,20 +50,12 @@
         .brand-nav a {
             text-decoration: none;
             color: var(--text-cream);
-            margin-right: 20px;
+            margin-left: 20px;
             font-weight: bold;
         }
 
-        .cart-wrapper {
-            position: relative;
-        }
-
-        .cart-icon {
-            text-decoration: none;
-            color: var(--text-cream);
-            font-size: 24px;
-        }
-
+        .cart-wrapper { position: relative; }
+        .cart-icon { text-decoration: none; color: var(--text-cream); font-size: 24px; }
         #cart-count {
             background: var(--accent-teal);
             color: var(--bg-dark-brown);
@@ -80,57 +68,52 @@
             font-weight: bold;
         }
 
-        /* تقسيم الصفحة */
+        /* --- حل مشكلة الصور مع الحفاظ على الأبعاد --- */
         .product-page {
             display: flex;
-            min-height: calc(100vh - 70px);
+            height: calc(100vh - 70px);
             flex-wrap: wrap;
         }
 
-        /* معرض الصور - التعديل الأساسي هنا */
         .product-gallery {
             flex: 1.2;
             min-width: 50%;
-            height: calc(100vh - 70px); /* تثبيت الطول */
-            background-color: #48B0AD;
+            background-color: #48B0AD; /* لون الخلفية الأصلي */
             position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
+            height: 100%; /* ثبات الارتفاع في الكمبيوتر */
             overflow: hidden;
         }
 
         #mainImage {
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* لضمان عدم تغير الأبعاد عند تبديل الصور */
-            transition: opacity 0.3s ease-in-out;
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain; /* عشان الصورة تظهر كاملة بدون قص */
+            border-radius: 10px;
+            border: 1px solid var(--accent-brown);
+            transition: opacity 0.3s ease;
         }
 
         .arrow {
-            background: rgba(0, 0, 0, 0.4);
-            color: white;
-            border: none;
-            width: 45px;
-            height: 45px;
+            background: rgba(0, 0, 0, 0.6);
+            color: var(--accent-teal);
+            border: 1px solid var(--accent-brown);
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             cursor: pointer;
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
             z-index: 10;
-            font-size: 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: 0.3s;
+            font-size: 20px;
         }
-
-        .arrow:hover { background: var(--accent-brown); }
         .next { left: 20px; }
         .prev { right: 20px; }
 
-        /* تفاصيل المنتج */
+        /* --- تفاصيل المنتج مع الـ Background Image الأصلية --- */
         .product-details {
             flex: 0.8;
             min-width: 40%;
@@ -142,46 +125,22 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            /* توهج للنص لزيادة الوضوح */
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
-        }
-
-        .brand-name { color: var(--logo-brown); font-weight: bold; display: block; margin-bottom: 5px; }
-        
-        h2.productTitle {
-            font-size: 32px;
-            margin-bottom: 15px;
-            color: var(--logo-brown);
-            font-weight: 700;
-        }
-
-        .price-tag {
-            font-size: 26px;
-            color: var(--logo-brown);
-            margin-bottom: 30px;
-            font-weight: bold;
-        }
-
-        .options-group span {
+            /* تأثير الظل اللي كان في كودك */
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.8), 0 0 5px rgba(255, 255, 255, 0.5);
             color: var(--logo-brown);
             font-weight: bold;
-            display: block;
-            margin-bottom: 10px;
         }
 
-        /* الأزرار */
-        .radio-buttons {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-            margin-bottom: 30px;
-        }
+        h2.productTitle { font-size: 35px; margin-bottom: 15px; color: #7D4427; }
+        .price-tag { font-size: 26px; color: #7D4427; margin-bottom: 30px; font-weight: bold; }
 
+        /* --- رجعت الـ Bottoms (الأزرار) بتصميمك الأصلي --- */
+        .radio-buttons { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 10px; margin-bottom: 20px; }
         .radio-buttons input { display: none; }
-
         .radio-buttons label {
             background-color: var(--accent-teal);
-            color: white;
+            color: var(--bg-dark-brown);
+            border: 2px solid var(--accent-teal);
             padding: 10px 25px;
             cursor: pointer;
             border-radius: 8px;
@@ -193,29 +152,36 @@
 
         .radio-buttons input:checked + label {
             background-color: var(--accent-brown);
+            border-color: var(--accent-brown);
+            color: var(--text-cream);
             transform: scale(1.1);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
         }
 
         .add-btn {
             background-color: var(--accent-teal);
-            color: white;
+            color: var(--bg-dark-brown);
             border: none;
             padding: 18px;
             font-size: 20px;
             font-weight: 700;
             cursor: pointer;
             width: 100%;
+            margin-top: 20px;
             border-radius: 12px;
             transition: 0.3s;
         }
 
         .add-btn:hover {
             background-color: var(--accent-brown);
+            color: white;
             transform: translateY(-3px);
         }
 
-        /* انيميشن الهز */
+        /* الألوان للنصوص */
+        .brand-name, .productTitle, .price-tag, span { color: #7D4427; }
+
+        /* انيميشن السلة */
         @keyframes shake {
             0% { transform: scale(1); }
             25% { transform: scale(1.2) rotate(10deg); }
@@ -223,9 +189,9 @@
             100% { transform: scale(1); }
         }
 
-        /* الموبايل */
+        /* استجابة الموبايل مع تثبيت الصور */
         @media (max-width: 768px) {
-            .product-page { flex-direction: column; }
+            .product-page { flex-direction: column; height: auto; }
             .product-gallery { height: 50vh; min-width: 100%; }
             .product-details { min-width: 100%; padding: 30px 20px; }
         }
@@ -234,23 +200,21 @@
 
 <body>
     <header class="brand-header">
-        <a href="index.html" class="logo">LOOP</a>
+        <h1 class="logo">LOOP</h1>
         <nav class="brand-nav">
-            <a href="index.html">الرئيسية</a>
-            <a href="#">نسائي</a>
-            <a href="#">رجالي</a>
+            <a href="index.html">Home</a>
+            <a href="#">Women</a>
+            <a href="#">Men</a>
         </nav>
         <div class="cart-wrapper" id="cartWrapper">
-            <a href="cart.html" class="cart-icon">
-                🛒 <span id="cart-count">0</span>
-            </a>
+            <a href="cart.html" class="cart-icon">🛒 <span id="cart-count">0</span></a>
         </div>
     </header>
 
     <main class="product-page">
         <section class="product-gallery">
             <button class="arrow next" onclick="changeImage(-1)">&#10094;</button>
-            <img id="mainImage" src="IMG-20260208-WA0002.jpg" alt="Product">
+            <img id="mainImage" src="IMG-20260208-WA0000.jpg" alt="Product">
             <button class="arrow prev" onclick="changeImage(1)">&#10095;</button>
         </section>
 
@@ -260,7 +224,7 @@
             <p class="price-tag">1300.00 EGP</p>
 
             <div class="options-group">
-                <span>SIZE / المقاس</span>
+                <span> SIZE</span>
                 <div class="radio-buttons">
                     <input type="radio" name="size" id="s" value="S"> <label for="s">S</label>
                     <input type="radio" name="size" id="m" value="M"> <label for="m">M</label>
@@ -269,25 +233,24 @@
                 </div>
             </div>
 
-            <button class="add-btn" onclick="addToMyCart()">إضافة إلى العربة</button>
+            <button class="add-btn" onclick="addToMyCart()">Add to cart</button>
         </section>
     </main>
 
     <script>
-        const images = ["IMG-20260208-WA0002.jpg", "IMG-20260208-WA0000.jpg", "0000.jpg", "7777.jpg"];
+        const images = ["IMG-20260208-WA0000.jpg", "0000.jpg", "7777.jpg"];
         let currentIndex = 0;
 
         function changeImage(direction) {
-            const imgElement = document.getElementById('mainImage');
-            imgElement.style.opacity = 0; // تأثير تلاشي بسيط
-            
+            const img = document.getElementById('mainImage');
+            img.style.opacity = '0.5';
             setTimeout(() => {
                 currentIndex += direction;
                 if (currentIndex >= images.length) currentIndex = 0;
                 if (currentIndex < 0) currentIndex = images.length - 1;
-                imgElement.src = images[currentIndex];
-                imgElement.style.opacity = 1;
-            }, 200);
+                img.src = images[currentIndex];
+                img.style.opacity = '1';
+            }, 150);
         }
 
         function updateCartNumber() {
@@ -298,12 +261,9 @@
 
         function addToMyCart() {
             const selectedSize = document.querySelector('input[name="size"]:checked')?.value;
+            if (!selectedSize) { alert("Please, Choose The Size First"); return; }
 
-            if (!selectedSize) {
-                alert("برجاء اختيار المقاس أولاً");
-                return;
-            }
-
+            // كود الأنيميشن الخاص بك
             const imgElement = document.getElementById('mainImage');
             const cartIcon = document.getElementById('cartWrapper');
             const flyingImg = imgElement.cloneNode();
@@ -311,34 +271,23 @@
             const cartRect = cartIcon.getBoundingClientRect();
 
             Object.assign(flyingImg.style, {
-                position: 'fixed',
-                top: rect.top + 'px',
-                left: rect.left + 'px',
-                width: rect.width + 'px',
-                height: rect.height + 'px',
-                zIndex: '5000',
-                transition: 'all 0.8s cubic-bezier(0.45, 0.05, 0.55, 0.95)',
-                borderRadius: '10px',
-                pointerEvents: 'none',
-                objectFit: 'cover'
+                position: 'fixed', top: rect.top + 'px', left: rect.left + 'px',
+                width: rect.width + 'px', height: rect.height + 'px', zIndex: '5000',
+                transition: 'all 0.8s ease-in-out', borderRadius: '10px', pointerEvents: 'none'
             });
 
             document.body.appendChild(flyingImg);
-
             requestAnimationFrame(() => {
                 flyingImg.style.top = cartRect.top + 'px';
                 flyingImg.style.left = cartRect.left + 'px';
-                flyingImg.style.width = '20px';
-                flyingImg.style.height = '20px';
+                flyingImg.style.width = '20px'; flyingImg.style.height = '20px';
                 flyingImg.style.opacity = '0.3';
             });
 
             let cartItems = JSON.parse(localStorage.getItem('myCart')) || [];
             cartItems.push({
                 name: document.getElementById('productTitle').innerText,
-                price: "1300.00 EGP",
-                size: selectedSize,
-                image: imgElement.src
+                price: "1300.00 EGP", size: selectedSize, image: imgElement.src
             });
             localStorage.setItem('myCart', JSON.stringify(cartItems));
 
@@ -351,4 +300,5 @@
         }
     </script>
 </body>
+
 </html>
