@@ -84,6 +84,7 @@
             flex-wrap: wrap;
         }
 
+        /* --- تعديل تثبيت الأبعاد هنا --- */
         .product-gallery {
             flex: 1.2;
             min-width: 50%;
@@ -92,15 +93,24 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            /* منع تمدد الحاوية */
+            height: 100%;
+            overflow: hidden;
         }
 
         #mainImage {
-            max-width: 90%;
-            max-height: 90%;
+            /* تثبيت العرض والارتفاع كنسبة مئوية من الحاوية الأصلية */
+            width: 90%;
+            height: 90%;
+            /* الحفاظ على تناسق الصورة داخل البرواز الثابت */
             object-fit: contain;
             border-radius: 10px;
             border: 1px solid var(--accent-brown);
+            /* إضافة انتقال ناعم للشفافية لمنع الوميض المزعج */
+            transition: opacity 0.2s ease-in-out;
         }
+
+        /* ---------------------------- */
 
         .arrow {
             background: rgba(0, 0, 0, 0.6);
@@ -135,14 +145,10 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            /* ظل أبيض ناعم جداً ومنتشر (Blur) بدل الخط الحاد */
             text-shadow: 0 0 15px rgba(255, 255, 255, 0.8),
                 0 0 5px rgba(255, 255, 255, 0.5);
-
-            /* التأكد من أن اللون الأصلي (البني) واضح */
-            color: var(--logo-brown);
+            color: #7D4427;
             font-weight: bold;
-
         }
 
         h2 {
@@ -286,8 +292,6 @@
                 </div>
             </div>
 
-
-
             <button class="add-btn" onclick="addToMyCart()">Add to cart</button>
         </section>
     </main>
@@ -297,10 +301,23 @@
         let currentIndex = 0;
 
         function changeImage(direction) {
-            currentIndex += direction;
-            if (currentIndex >= images.length) currentIndex = 0;
-            if (currentIndex < 0) currentIndex = images.length - 1;
-            document.getElementById('mainImage').src = images[currentIndex];
+            const imgElement = document.getElementById('mainImage');
+
+            // جعل الصورة تختفي قليلاً قبل التغيير لضمان عدم حدوث قفزة بصرية
+            imgElement.style.opacity = '0';
+
+            setTimeout(() => {
+                currentIndex += direction;
+                if (currentIndex >= images.length) currentIndex = 0;
+                if (currentIndex < 0) currentIndex = images.length - 1;
+
+                imgElement.src = images[currentIndex];
+
+                // إعادة الظهور بعد التغيير
+                imgElement.onload = () => {
+                    imgElement.style.opacity = '1';
+                };
+            }, 200);
         }
 
         function updateCartNumber() {
@@ -333,7 +350,8 @@
                 zIndex: '5000',
                 transition: 'all 0.8s cubic-bezier(0.45, 0.05, 0.55, 0.95)',
                 borderRadius: '10px',
-                pointerEvents: 'none'
+                pointerEvents: 'none',
+                objectFit: 'contain' // لضمان ثبات شكل الصورة الطائرة أيضاً
             });
 
             document.body.appendChild(flyingImg);
