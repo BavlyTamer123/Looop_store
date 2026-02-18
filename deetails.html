@@ -31,7 +31,6 @@
             overflow-x: hidden;
         }
 
-        /* --- الهيدر الموحد --- */
         .brand-header {
             background-color: rgba(0, 0, 0, 0.9);
             padding: 15px 5%;
@@ -81,13 +80,13 @@
             font-weight: bold;
         }
 
-        /* --- تقسيم الصفحة --- */
         .product-page {
             display: flex;
             height: calc(100vh - 70px);
             flex-wrap: wrap;
         }
 
+        /* --- تعديل تثبيت الأبعاد هنا --- */
         .product-gallery {
             flex: 1.2;
             min-width: 50%;
@@ -97,16 +96,19 @@
             align-items: center;
             justify-content: center;
             overflow: hidden;
+            height: 100%; /* ضمان ثبات ارتفاع الحاوية */
         }
 
         #mainImage {
-            max-width: 90%;
-            max-height: 90%;
+            /* تثبيت العرض والارتفاع لمنع التمدد والانكماش */
+            width: 90%;
+            height: 90%;
             object-fit: contain;
             border-radius: 10px;
             border: 1px solid var(--accent-brown);
             transition: opacity 0.3s ease-in-out;
         }
+        /* ---------------------------- */
 
         .arrow {
             background: rgba(0, 0, 0, 0.6);
@@ -123,15 +125,9 @@
             font-size: 20px;
         }
 
-        .next {
-            left: 20px;
-        }
+        .next { left: 20px; }
+        .prev { right: 20px; }
 
-        .prev {
-            right: 20px;
-        }
-
-        /* --- تفاصيل المنتج بخلفية الصورة الموحدة --- */
         .product-details {
             flex: 0.8;
             min-width: 40%;
@@ -146,27 +142,14 @@
             text-shadow: 0 0 15px rgba(255, 255, 255, 0.8), 0 0 5px rgba(255, 255, 255, 0.5);
         }
 
-        /* توحيد ألوان النصوص */
-        .brand-name,
-        .productTitle,
-        .price-tag,
-        .options-group span,
-        .color-title {
+        .brand-name, .productTitle, .price-tag, .options-group span, .color-title {
             color: #7D4427;
             font-weight: bold;
         }
 
-        h2.productTitle {
-            font-size: 35px;
-            margin-bottom: 10px;
-        }
+        h2.productTitle { font-size: 35px; margin-bottom: 10px; }
+        .price-tag { font-size: 26px; margin-bottom: 25px; }
 
-        .price-tag {
-            font-size: 26px;
-            margin-bottom: 25px;
-        }
-
-        /* --- تنسيق أزرار المقاسات --- */
         .radio-buttons {
             display: flex;
             gap: 12px;
@@ -175,10 +158,7 @@
             margin-bottom: 20px;
         }
 
-        .radio-buttons input {
-            display: none;
-        }
-
+        .radio-buttons input { display: none; }
         .radio-buttons label {
             background-color: var(--accent-teal);
             color: var(--bg-dark-brown);
@@ -199,13 +179,7 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
         }
 
-        /* --- تنسيق دوائر الألوان --- */
-        .colors {
-            display: flex;
-            gap: 15px;
-            margin-top: 10px;
-        }
-
+        .colors { display: flex; gap: 15px; margin-top: 10px; }
         .color {
             width: 40px;
             height: 40px;
@@ -232,7 +206,6 @@
             font-weight: normal;
         }
 
-        /* --- زر الإضافة للسلة --- */
         .add-btn {
             background-color: var(--accent-teal);
             color: var(--bg-dark-brown);
@@ -254,38 +227,16 @@
         }
 
         @keyframes shake {
-            0% {
-                transform: scale(1);
-            }
-
-            25% {
-                transform: scale(1.2) rotate(10deg);
-            }
-
-            50% {
-                transform: scale(1.2) rotate(-10deg);
-            }
-
-            100% {
-                transform: scale(1);
-            }
+            0% { transform: scale(1); }
+            25% { transform: scale(1.2) rotate(10deg); }
+            50% { transform: scale(1.2) rotate(-10deg); }
+            100% { transform: scale(1); }
         }
 
         @media (max-width: 768px) {
-            .product-page {
-                flex-direction: column;
-                height: auto;
-            }
-
-            .product-gallery {
-                height: 50vh;
-                min-width: 100%;
-            }
-
-            .product-details {
-                min-width: 100%;
-                padding: 30px 20px;
-            }
+            .product-page { flex-direction: column; height: auto; }
+            .product-gallery { height: 50vh; min-width: 100%; }
+            .product-details { min-width: 100%; padding: 30px 20px; }
         }
     </style>
 </head>
@@ -344,34 +295,35 @@
         let images = ["11baf817f420e7749714c6d56e9c8b37.jpg", "64fcff1d-dc60-49bc-aac0-536597c0868e.jpg"];
         let currentIndex = 0;
 
-        function changeImage(direction) {
+        // وظيفة موحدة لتغيير الصورة بسلاسة وثبات
+        function updateMainImage(newSrc) {
             const img = document.getElementById('mainImage');
-            img.style.opacity = '0.5';
+            img.style.opacity = '0'; // إخفاء مؤقت
+            
             setTimeout(() => {
-                currentIndex += direction;
-                if (currentIndex >= images.length) currentIndex = 0;
-                if (currentIndex < 0) currentIndex = images.length - 1;
-                img.src = images[currentIndex];
-                img.style.opacity = '1';
-            }, 150);
+                img.src = newSrc;
+                img.onload = () => {
+                    img.style.opacity = '1'; // إظهار بعد التحميل لضمان عدم القفز
+                };
+            }, 200);
         }
 
-        // تحسين اختيار الألوان
+        function changeImage(direction) {
+            currentIndex += direction;
+            if (currentIndex >= images.length) currentIndex = 0;
+            if (currentIndex < 0) currentIndex = images.length - 1;
+            updateMainImage(images[currentIndex]);
+        }
+
         const colorElements = document.querySelectorAll('.color');
         const moodText = document.getElementById('moodText');
-        const mainImg = document.getElementById('mainImage');
 
         colorElements.forEach(color => {
             color.addEventListener('click', () => {
                 colorElements.forEach(c => c.classList.remove('active'));
                 color.classList.add('active');
                 moodText.textContent = color.dataset.mood;
-
-                mainImg.style.opacity = '0.5';
-                setTimeout(() => {
-                    mainImg.src = color.dataset.image;
-                    mainImg.style.opacity = '1';
-                }, 150);
+                updateMainImage(color.dataset.image);
             });
         });
 
@@ -380,6 +332,7 @@
             document.getElementById('cart-count').innerText = cartItems.length;
         }
         updateCartNumber();
+
         function addToMyCart() {
             const selectedSize = document.querySelector('input[name="size"]:checked')?.value;
             const activeColor = document.querySelector('.color.active');
@@ -396,7 +349,6 @@
             const rect = imgElement.getBoundingClientRect();
             const cartRect = cartIcon.getBoundingClientRect();
 
-            // تطبيق نفس ستايل الكود الأول بالظبط
             Object.assign(flyingImg.style, {
                 position: 'fixed',
                 top: rect.top + 'px',
@@ -404,9 +356,10 @@
                 width: rect.width + 'px',
                 height: rect.height + 'px',
                 zIndex: '5000',
-                transition: 'all 0.8s cubic-bezier(0.45, 0.05, 0.55, 0.95)', // الحركة الانسيابية
+                transition: 'all 0.8s cubic-bezier(0.45, 0.05, 0.55, 0.95)',
                 borderRadius: '10px',
-                pointerEvents: 'none'
+                pointerEvents: 'none',
+                objectFit: 'contain'
             });
 
             document.body.appendChild(flyingImg);
@@ -416,11 +369,10 @@
                 flyingImg.style.left = cartRect.left + 'px';
                 flyingImg.style.width = '20px';
                 flyingImg.style.height = '20px';
-                flyingImg.style.transform = 'rotate(720deg)'; // إضافة الدوران
+                flyingImg.style.transform = 'rotate(720deg)';
                 flyingImg.style.opacity = '0.3';
             });
 
-            // حفظ البيانات
             let cartItems = JSON.parse(localStorage.getItem('myCart')) || [];
             cartItems.push({
                 name: document.getElementById('productTitle').innerText,
@@ -433,7 +385,7 @@
 
             setTimeout(() => {
                 flyingImg.remove();
-                cartIcon.style.animation = "shake 0.5s ease"; // هزة السلة
+                cartIcon.style.animation = "shake 0.5s ease";
                 updateCartNumber();
                 setTimeout(() => cartIcon.style.animation = "", 500);
             }, 800);
